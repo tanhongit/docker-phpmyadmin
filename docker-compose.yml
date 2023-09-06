@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: ${APP_NAME:-my}-phpmyadmin
+    restart: always
+    ports:
+      - '${PHPMYADMIN_PORT:-10080}:${APP_PORT:-80}'
+    environment:
+      PMA_HOST: host.docker.internal
+      PMA_PORT: ${DB_PORT:-3306}
+      UPLOAD_LIMIT: ${PHPMYADMIN_UPLOAD_LIMIT:-100M}
